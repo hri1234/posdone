@@ -1,0 +1,56 @@
+@import "src/styles/utils/variables.scss";
+
+.authLayout {
+  background-color: #ffffff;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  .logo {
+    width: 250px;
+  }
+  .row {
+    width: 100%;
+  }
+
+  &-col {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 18px;
+    // width: 100%;
+    margin: 0 auto;
+    @media (max-width: 991px) {
+      width: 100%;
+      padding: 0 50px;
+    }
+  }
+
+  &-submitBtn {
+    color: #ffffff;
+    background-color: $primary;
+    border-radius: 30px;
+  }
+  &-askAccount {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 15px;
+  }
+
+  &-link {
+    color: $primary;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  &-roleBtn {
+    color: $primary;
+    background-color: #ffffff;
+    border-radius: 30px;
+    border: 1px solid $primary;
+    &.selected {
+      background-color: $secondary;
+      color: #ffffff;
+      border: 1px solid $secondary;
+    }
+  }
+}

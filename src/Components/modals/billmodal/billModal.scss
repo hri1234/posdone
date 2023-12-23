@@ -1,0 +1,53 @@
+.billModal {
+  .receipt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 20px;
+    color: #000000;
+    .key {
+      font-weight: bold;
+    }
+    &-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      & .title {
+        font-weight: bold;
+        font-size: 20px;
+      }
+    }
+    &-body {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+      width: 100%;
+      > div {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+    }
+    &-footer {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 20px;
+      gap: 10px;
+      > div {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+      }
+    }
+    &-thankyou {
+      margin-top: 20px;
+    }
+  }
+}

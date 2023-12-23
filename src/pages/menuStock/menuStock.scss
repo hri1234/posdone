@@ -1,0 +1,20 @@
+.menuStock {
+  .menu-img {
+    .img {
+      padding-top: 75%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+  .menu-info {
+    padding: 10px;
+  }
+  .menu-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 20px;
+  }
+}

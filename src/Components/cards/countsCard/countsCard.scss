@@ -1,0 +1,43 @@
+@import "src/styles/utils/variables.scss";
+
+.countsCard {
+  width: 250px;
+  height: 150px;
+  background-color: $primary; // $secondary; // #ffffff;
+  // border: 1px solid $primary;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  justify-content: space-between;
+  color: #ffffff;
+  &-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    & .title {
+      font-size: 18px;
+      font-weight: 400;
+      // color: $primary;
+    }
+    & .icon {
+      font-size: 20px;
+      font-weight: 700;
+      background: #ffffff; // $secondary; // #e7f1f1;
+      padding: 3px 10px;
+      // border: 1px solid $secondary;
+      border-radius: 5px;
+      > svg {
+        color: $primary;
+        // fill: $primary;
+      }
+    }
+  }
+  &-middle {
+    & .count {
+      font-size: 25px;
+      font-weight: 700;
+      // color: $primary;
+    }
+  }
+}
