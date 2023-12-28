@@ -5,10 +5,12 @@ import { Box, Stack, AppBar, Toolbar } from "@mui/material";
 import { Link } from "react-router-dom";
 // components
 import ProfilePopover from "src/Components/selection/ProfilePopover";
+import {useState} from "react"
 // css
 import "./dashboardNavbar.scss";
 // constants
 import { ROUTES_URL } from "src/constants/url.constant";
+import { Dropdown } from "react-bootstrap";
 // ----------------------------------------------------------------------
 
 // const DRAWER_WIDTH = 280;
@@ -36,11 +38,17 @@ const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-DashboardNavbar.propTypes = {
-  onOpenSidebar: PropTypes.func,
-};
+// DashboardNavbar.propTypes = {
+//   onOpenSidebar: PropTypes.func,
+// };
 
 export default function DashboardNavbar({ toggleSidebar, isOpenSidebar }) {
+  const [menu, setMenu] = useState(false);
+
+  const toggleMenu = () => {
+     setMenu(!menu);
+  };
+ 
   return (
     <RootStyle className="dashboardNavbar">
       <ToolbarStyle>
@@ -181,62 +189,52 @@ export default function DashboardNavbar({ toggleSidebar, isOpenSidebar }) {
                 />
               </a>
             </li>
-            <li className="nav-item mt-2">
-              <a className="nav-link" href="#">
-                <div className="btn-group dropstart">
-                  <i
-                    className="fa-solid fa-grid"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                    style={{
-                      color: "#0A1E3C",
-                      fontSize: "26px",
-                      lineHeight: "45px",
-                      textAlign: "center",
-                      width: "45px",
-                      height: "45px",
-                      borderRadius: "50%",
-                    }}
-                  ></i>
-                  <ul className="dropdown-menu">
-                    <li>
-                      <button className="dropdown-item" type="button">
-                        {" "}
-                        <i className="fa-regular fa-id-card-clip me-2" />
-                        Merchant ID
-                      </button>
-                    </li>
-                    <li>
-                      <button className="dropdown-item" type="button">
-                        <i className="fa-solid fa-notes me-2" />
-                        Add Note
-                      </button>
-                    </li>
-                    <li>
-                      <button className="dropdown-item" type="button">
-                        {" "}
-                        <i className="fa-regular fa-cash-register me-2" />
-                        Open Register
-                      </button>
-                    </li>
-                    <li>
-                      <button className="dropdown-item" type="button">
-                        {" "}
-                        <i className="fa-regular fa-language me-2" />
-                        Languages
-                      </button>
-                    </li>
-                    <li>
-                      <button className="dropdown-item" type="button">
-                        {" "}
-                        <i className="fa-duotone fa-gear-complex me-2" />
-                        Support
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-              </a>
-            </li>
+            <li className="nav-item mt-2" style={{marginTop:"20px"}}>
+      <Dropdown style={{marginRight:"20px"}}>
+        <Dropdown.Toggle as="a" href="#" id="dropdown-basic">
+          <div className="btn-group dropstart">
+            <i
+              className="fa-solid fa-grid"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style={{
+                color: "#0A1E3C",
+                fontSize: "26px",
+                lineHeight: "45px",
+                textAlign: "center",
+                width: "45px",
+                height: "45px",
+                borderRadius: "50%",
+                marginTop:"8px"
+              }}
+            ></i>
+          </div>
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          <Dropdown.Item href="#">
+            <i className="fa-regular fa-id-card-clip me-2" />
+            Merchant ID
+          </Dropdown.Item>
+          <Dropdown.Item href="#">
+            <i className="fa-solid fa-notes me-2" />
+            Add Note
+          </Dropdown.Item>
+          <Dropdown.Item href="#">
+            <i className="fa-regular fa-cash-register me-2" />
+            <Link to="/Openregister" style={{color:"black" , textDecoration:"none"}}>Open Register</Link>
+          </Dropdown.Item>
+          <Dropdown.Item href="#">
+            <i className="fa-regular fa-language me-2" />
+            Languages
+          </Dropdown.Item>
+          <Dropdown.Item href="#">
+            <i className="fa-duotone fa-gear-complex me-2" />
+            Support
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+    </li>
           </ul>
         </div>
         <Stack

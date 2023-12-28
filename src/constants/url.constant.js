@@ -24,6 +24,23 @@ export const ROUTES_URL = {
   LOGOUT: "/logout",
   NOT_FOUND: "/404",
   KITCHEN_ORDEREX: "/KITCHEN_ORDEREX",
+  BILL_MODAL:"/BillModal",
+  CHARGE: "/Charge",
+  PAYMENT :"/Payment",
+  SPLITCUSTOM:"/SplitCustom",
+  DONE:"/Done",
+  BILLMODAL1:"/BillModal1",
+  OPENREGISTER:"/Openregister",
+  STEPPER:"/CustomizedSteppers",
+  CALCULATER:"/Calculater",
+  DINNING:"/Dinning",
+  KITCHENDINNING:"/KitchenDinning",
+  DINNSIDE:"/Dinnside",
+  TABLE :"/Table",
+  BELLS :"/Bells",
+  INVENTORY:"/Inventory",
+  CUSTOMER :"/Customer",
+  ORDER:"/Order"
 };
 
 // const API_GATEWAY = "http://localhost:8000/api";

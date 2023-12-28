@@ -10,6 +10,8 @@ import SalesOrder from "src/pages/purchase/SalesOrder";
 import PurchaseSuplire from "src/pages/purchase/PurchaseSuplire";
 import ProductsForm from "src/pages/products/ProductsForm";
 import KitchenOrderEX from "src/pages/kitchenOrder/KitchenOrderEX";
+import Inventory from "src/pages/inventory/Inventory"
+// import BillModal from "src/Components/modals/billmodal/BillModal";
 
 const AddCustomerForm = lazy(() =>
   import("src/pages/addcustomer/AddCustomerForm")
@@ -38,7 +40,7 @@ const KitchenOrder = lazy(() => import("src/pages/kitchenOrder/KitchenOrder"));
 const PrintingForm = lazy(() => import("src/pages/printing/PrintingForm"));
 const MenuStock = lazy(() => import("src/pages/menuStock/MenuStock"));
 const MenuForm = lazy(() => import("src/pages/menuStock/MenuForm"));
-
+const BillModal = lazy(() => import("src/pages/BillModal/BillModal") )
 const TableBooking = lazy(() => import("src/pages/tableBooking/TableBooking"));
 const Products = lazy(() => import("src/pages/products/Products"));
 // const ProductsForm = lazy(() => import("src/pages/products/ProductsForm"));
@@ -47,6 +49,22 @@ const Printing = lazy(() => import("src/pages/printing/Printing"));
 
 const Purchase = lazy(() => import("src/pages/purchase/Purchase"));
 const Page404 = lazy(() => import("src/pages/Page404/Page404"));
+const Charge = lazy(() => import("src/pages/BillModal/Charge"));
+const Payment = lazy(() => import("src/pages/BillModal/Payment"));
+const SplitCustom = lazy(() => import("src/pages/BillModal/SplitCustom"));
+const Done = lazy(() => import("src/pages/BillModal/Done"));
+const Openregister = lazy(()=> import("src/pages/Managment/Openregister"))
+const CustomizedSteppers = lazy(() => import("src/pages/Stepper/CustomizedSteppers"))
+const Calculater = lazy(() => import("src/pages/BillModal/Calculater"))
+const Dinning = lazy(()=> import("src/pages/diningmanagement/Dinning"))
+const KitchenDinning = lazy(() => import("src/pages/diningmanagement/KitchenDinning"));
+const Dinnside = lazy(()=> import("src/pages/diningmanagement/Dinnside"))
+const Table = lazy(()=> import("src/pages/diningmanagement/Table"))
+const Bells = lazy(() => import("src/pages/diningmanagement/Bells"));
+const Customer = lazy(() => import("src/pages/customer/Customer"));
+const Order = lazy(()=> import("src/pages/order/Order"))
+
+// const BillModal1 = lazy(() =>{"src/modals/billModal/BillModal1"})
 // const MainPage = lazy(() => import("src/pages/mainPage/MainPage"));
 
 // import AddMenu from "src/pages/addmenu/AddMenu";
@@ -115,6 +133,183 @@ const RoutesWrap = () => {
           ],
         },
 
+        {
+          path: ROUTES_URL.CUSTOMER.split(appSplitStr)[1],
+          element: <Outlet />,
+          children: [
+            {
+              path: "",
+              element: <Customer />,
+            },
+          ],
+        },
+
+        {
+          path: ROUTES_URL.ORDER.split(appSplitStr)[1],
+          element: <Outlet />,
+          children: [
+            {
+              path: "",
+              element: <Order />,
+            },
+          ],
+        },
+
+
+        {
+          path: ROUTES_URL.INVENTORY.split(appSplitStr)[1],
+          element: <Outlet />,
+          children: [
+            {
+              path: "",
+              element: <Inventory />,
+            },
+          ],
+        },
+
+        {
+          path: ROUTES_URL.BELLS.split(appSplitStr)[1],
+          element: <Outlet />,
+          children: [
+            {
+              path: "",
+              element: <Bells />,
+            },
+          ],
+        },
+
+        {
+          path: ROUTES_URL.TABLE.split(appSplitStr)[1],
+          element: <Outlet />,
+          children: [
+            {
+              path: "",
+              element: <Table />,
+            },
+          ],
+        },
+
+        {
+          path: ROUTES_URL.DINNSIDE.split(appSplitStr)[1],
+          element: <Outlet />,
+          children: [
+            {
+              path: "",
+              element: <Dinnside />,
+            },
+          ],
+        },
+
+        {
+          path: ROUTES_URL.KITCHENDINNING.split(appSplitStr)[1],
+          element: <Outlet />,
+          children: [
+            {
+              path: "",
+              element: <KitchenDinning />,
+            },
+          ],
+        },
+
+        {
+          path: ROUTES_URL.DINNING.split(appSplitStr)[1],
+          element: <Outlet />,
+          children: [
+            {
+              path: "",
+              element: <Dinning />,
+            },
+          ],
+        },
+
+        {
+          path: ROUTES_URL.CALCULATER.split(appSplitStr)[1],
+          element: <Outlet />,
+          children: [
+            {
+              path: "",
+              element: <Calculater />,
+            },
+          ],
+        },
+
+        // {
+        //   path: ROUTES_URL.COUNTER_BILLMODAL1.split(appSplitStr)[1],
+        //   element: <Outlet />,
+        //   children: [
+        //     {
+        //       path: "",
+        //       element: <BillModal1 />,
+        //     },
+        //   ],
+        // },
+
+        {
+          path: ROUTES_URL.CHARGE.split(appSplitStr)[1],
+          element: <Outlet />,
+          children: [
+            {
+              path: "",
+              element: <Charge />,
+            },
+          ],
+        },
+
+        {
+          path: ROUTES_URL.PAYMENT.split(appSplitStr)[1],
+          element: <Outlet />,
+          children: [
+            {
+              path: "",
+              element: <Payment />,
+            },
+          ],
+        },
+
+        {
+          path: ROUTES_URL.DONE.split(appSplitStr)[1],
+          element: <Outlet />,
+          children: [
+            {
+              path: "",
+              element: <Done />,
+            },
+          ],
+        },
+
+        {
+          path: ROUTES_URL.SPLITCUSTOM.split(appSplitStr)[1],
+          element: <Outlet />,
+          children: [
+            {
+              path: "",
+              element: <SplitCustom />,
+            },
+          ],
+        },
+
+        {
+          path: ROUTES_URL.BILL_MODAL.split(appSplitStr)[1],
+          element: <Outlet />,
+          children: [
+            {
+              path: "",
+              element: <BillModal />,
+            },
+          ],
+        },
+
+        {
+          path: ROUTES_URL.OPENREGISTER.split(appSplitStr)[1],
+          element: <Outlet />,
+          children: [
+            {
+              path: "",
+              element: <Openregister />,
+            },
+          ],
+        },
+
 
         // {
         //   path: ROUTES_URL.COUNTER_CHECKOUT.split(appSplitStr)[1],
@@ -134,6 +329,18 @@ const RoutesWrap = () => {
             {
               path: "",
               element: <CustomerOrder />,
+            },
+          ],
+        },
+
+        
+        {
+          path: ROUTES_URL.STEPPER.split(appSplitStr)[1],
+          element: <Outlet />,
+          children: [
+            {
+              path: "",
+              element: <CustomizedSteppers />,
             },
           ],
         },

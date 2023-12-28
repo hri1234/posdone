@@ -1,0 +1,126 @@
+nav {
+    background-color: white !important;
+    color: white !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    height: 50px !important;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px !important;
+  }
+
+  .middile {
+    margin-right: 4rem !important;
+  }
+
+  .middile-hide {
+    margin-right: 4rem !important;
+  }
+
+  .end {
+    margin-top: 0.5rem !important;
+  }
+
+  .set_icon_nav {
+    font-size: 25px !important;
+    color: #00003E !important;
+    letter-spacing: 33px !important;
+  }
+
+  .set_icon_nav_first {
+    color: #00003E !important;
+    font-size: 26px !important;
+ 
+  }
+
+  .set_name {
+    font-size: 22px !important;
+    font-weight: 600 !important;
+  }
+
+  .wrapper {
+    position: fixed;
+    top: 240px;
+    right: 0px;
+    z-index: 1000;
+    height: auto !important;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1);
+
+  }
+
+  @media only screen and (max-width: 990px) {
+    .middile {
+      display: none !important;
+
+    }
+
+    .sidebar {
+      margin-top: 160px !important;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+
+    .start,
+    .middle,
+    .end {
+      padding: 0.2px !important;
+    }
+
+    .set_icon_nav {
+      font-size: 13px !important;
+      color: #00003E !important;
+      letter-spacing: 4px !important;
+    }
+
+    .set_icon_nav_first {
+      font-size: 13px !important;
+    }
+
+    .set_name {
+      font-size: 11px !important;
+    }
+  }
+
+  @media (min-width:990px) and (max-width: 1800px) {
+    .middile-hide {
+      display: none !important;
+    }
+  }
+  .c1 {
+    background-color: white;
+    border-radius: 2%;
+}
+
+
+
+
+
+
+
+
+/* table */
+
+.card {
+    padding: .5rem;
+}
+
+.salesicon {
+    width: 5vw;
+}
+
+.card {
+    padding: .5rem;
+}
+.c1 {
+    background-color: white;
+    border-radius: 2%;
+}
+
+
+/* table */
+body {
+    background-color: #eff3f7;
+}

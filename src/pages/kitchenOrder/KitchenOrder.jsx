@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import DigitalWatch from "./DigitalWatch";
 import kitchenorder from "../../constants/kitchenorder.constant"
 import "./kichenOrder.scss"
+import Dinnheader from "../diningmanagement/Dinnheader"
+import  Dinnside from "../diningmanagement/Dinnside"
 // import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 const KitchenOrder = () => {
@@ -145,8 +147,11 @@ const filteredProducts = users.filter((user) => user.elapsedTime > 30000);
 
   return (
     <>
+    <Dinnheader />
+   
     {/* <h3 style={{color:"black" , fontWeight:"900" , fontStyle:"italic"}}>KitchenOrder</h3> */}
-    <div className="row center">
+    <div className="container-fluid">
+    <div className="row center" style={{width:"full"}}>
       <span style={{display:"inline"}}>
       <DigitalWatch />
       <h3 style={{color:"black" , fontWeight:"900" , fontStyle:"italic" , position:"relative", left:"117px"}}>Online KitchenOrder</h3>
@@ -223,6 +228,7 @@ const filteredProducts = users.filter((user) => user.elapsedTime > 30000);
 </div>
       ))}
       </div>
+    </div>
     </>
   );
 }

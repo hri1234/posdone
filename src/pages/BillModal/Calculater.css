@@ -1,0 +1,30 @@
+body {
+    background-color: #f5f6f8;
+}
+
+  .set_bg{
+    color: #0D536D;
+   }
+   .set_card{
+   border-radius: 16px;
+   box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+   }
+    .set_btn{
+       color: #00555C;
+       font-weight: 600;
+       border-radius: 10px !important;
+       border: 1px solid #c3c8cb;
+       box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+       box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    }
+    .set_btn p{
+       font-size: 29px;
+    }
+   .back-icon {       
+       width: 48px;
+       height: 48px;
+       border-radius: 50px;
+       /* background: url('../slider/card-icons/Asset 1@4x.png'), linear-gradient(rgba(255,255,255), rgba(255,255,255)); */
+       background-size: cover;
+       background-position: center;      
+   }

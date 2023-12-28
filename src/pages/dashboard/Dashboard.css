@@ -1,0 +1,307 @@
+.card {
+  background-color: #fff;
+  border-radius: 14px !important;
+  border: none;
+  position: relative;
+  margin-bottom: 30px;
+  box-shadow: 0 0.46875rem 2.1875rem rgba(90, 97, 105, 0.1), 0 0.9375rem 1.40625rem rgba(90, 97, 105, 0.1), 0 0.25rem 0.53125rem rgba(90, 97, 105, 0.12), 0 0.125rem 0.1875rem rgba(90, 97, 105, 0.1);
+}
+ 
+.l-bg-cherry {
+  background:
+    linear-gradient(to right, #493240, #f09) !important;
+  color: #fff;
+}
+
+.l-bg-blue-dark {
+  background: linear-gradient(to right, #373b44, #0260f7) !important;
+  color: #fff;
+}
+
+.l-bg-green-dark {
+  background: linear-gradient(to right,
+  #3b443f, #02f860) !important;
+  color: #fff;
+}
+
+.l-bg-orange-dark {
+  background: linear-gradient(to right, #332d25,
+      #ff9101) !important;
+  color: #fff;
+}
+
+/* #e907a5 */
+.l-bg-pink {
+  background: linear-gradient(to right, #412a39,
+      #ff00b7) !important;
+  color: #fff;
+}
+.l-bg-pink1{
+  background: linear-gradient(to right, #222921,
+  #2edb0b) !important;
+  color: #fff;
+}
+.l-bg-pink2{
+  background: linear-gradient(to right, #1f2327,
+  #016efc) !important;
+  border: none;
+color: #fff;
+}
+.l-bg-pink3{
+  background: linear-gradient(to right, #1d1d16,
+  #fceb02) !important;
+  border: none;
+color: #fff;
+}
+
+.l-bg-sky {
+  background: linear-gradient(to right, #172022,
+      #01e1ff) !important;
+    
+  color: #fff;
+}
+.l-bg-red {
+  background: linear-gradient(to right, #302323,
+      #dd0909) !important;
+  color: #fff;
+}
+
+.l-bg-light_green {
+  background: linear-gradient(to right, #212c28,
+  #02fca8) !important;
+  color: #fff;
+}
+
+.l-bg-light_blue {
+  background: linear-gradient(to right, #171318,
+  #fd026b) !important;
+color: #fff;
+
+}
+
+.l-bg-light_skyblue {
+  background: linear-gradient(to right, #151c1d,
+  #02d9ffc4) !important;
+  color: #fff; 
+}
+.l-bg-light_skyblue1{
+  background: linear-gradient(to right, #1d1916c0,
+  #ff7402c0) !important;
+  color: #fff;
+}
+.l-bg-orange_light {
+  background: linear-gradient(to right, #1f2327,
+  #0264f7d7) !important;
+  color: #fff;
+}
+
+.l-bg-orange_green {
+  background: linear-gradient(to right, #151318,
+      #7002ff) !important;
+  color: #fff;
+}
+
+.l-bg-orange_pink {
+  background: linear-gradient(to right, #29291f,
+      #ffee01) !important;
+  color: #fff;
+}
+
+.l-bg-orange_red {
+  background: linear-gradient(to right, #141412,
+      #fc01ef) !important;
+  color: #fff;
+}
+.l-bg-orange_red1{
+  background: linear-gradient(to right, #15151af6,
+  #0303fff6) !important;
+  color: #fff;
+}
+
+.l-bg-cyan {
+  background:
+    linear-gradient(135deg, #232b31, #0190fd) !important;
+  color: #fff;
+}
+
+.l-bg-green {
+  background:
+    linear-gradient(135deg, #131a16 0%, #43e794 100%) !important;
+  color: #fff;
+}
+
+.l-bg-orange {
+  background:
+    linear-gradient(to right, #1f1c17, #fd9902) !important;
+  color: #fff;
+}
+
+.l-bg-cyan {
+  background:
+    linear-gradient(135deg, #1c2225, #0194fd) !important;
+  color: #fff;
+}
+.l-bg-pink4{
+  background:
+  linear-gradient(135deg, #110f0e, #fd3301) !important;
+color: #fff;
+}
+.l-bg-light_skyblue2{
+  background:
+  linear-gradient(135deg, #000000, #b1fd01) !important;
+color: #fff;
+}
+
+.card .card-statistic-3 .card-icon-large,
+.card .card-statistic-3 .card-icon-large .far,
+.card .card-statistic-3 .card-icon-large .fab,
+.card .card-statistic-3 .card-icon-large .fal {
+  font-size: 110px;
+}
+
+.card .card-statistic-3 .card-icon {
+  text-align: center;
+  line-height: 50px;
+  margin-left: 15px;
+  color: #000;
+  position: absolute;
+  right: -5px;
+  top: 30px;
+  opacity: 0.2;
+}
+.p-4{
+  padding: 0.5rem !important;
+}
+
+
+.wrapper {
+position: fixed;
+top: 90px;
+right: 0px;
+z-index: 1000;
+overflow-y: scroll;
+height: 80% !important;
+}
+
+
+
+@keyframes FadeIn {
+0% {
+    transform: rotate(0deg);
+}
+
+100% {
+    transform: rotate(360deg);
+}
+}
+.wrapper a {
+/* height: 44px;
+width: 44px; */
+/* background: #000; */
+/* padding: 10px; */
+display: flex;
+flex-direction: row;
+border-radius: 50%;
+justify-content: center;
+align-items: center;
+text-decoration: none;
+color: #fff;
+/* margin: 8px; */
+}
+.set {
+  width: 100%;
+  height: 100%;
+}
+
+.my {
+  width: 100px;
+  height: 30px;
+  /* background-color: crimson; */
+  object-fit: contain;
+  object-position: center;
+}
+
+.navbar {
+  width: 100%;
+  /* background-color: rgba(0,0,0,0.1);   */
+  height: 50px !important;
+}
+
+.animate-charcter {
+  text-transform: uppercase;
+  background-image: linear-gradient(-225deg,
+          #231557 0%,
+          #44107a 29%,
+          #ff1361 67%,
+          #fff800 100%);
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+
+
+}
+
+@keyframes textclip {
+  to {
+      background-position: 200% center;
+  }
+}
+.search-container{
+background: #fff;
+height: 6vh;
+border-radius: 30px;
+padding: 10px 20px;
+display: flex;
+justify-content: center;
+align-items: center;
+cursor: pointer;
+transition: 0.8s;
+
+box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
+  -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+inset -4px -4px 6px 0 rgba(255,255,255,.2),
+inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
+
+.search-container:hover > .search-input{
+width: 400px;
+}
+
+.search-container .search-input{
+background: transparent;
+border: none;
+outline:none;
+width: 0px;
+font-weight: 500;
+font-size: 16px;
+transition: 0.8s;
+
+}
+
+.search-container .search-btn .fas{
+color: #5cbdbb;
+}
+
+@keyframes hoverShake {
+0% {transform: skew(0deg,0deg);}
+25% {transform: skew(5deg, 5deg);}
+75% {transform: skew(-5deg, -5deg);}
+100% {transform: skew(0deg,0deg);}
+}
+
+.search-container:hover{
+animation: hoverShake 0.15s linear 3;
+}
+.navbar{
+   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px,
+   rgba(0, 0, 0, 0.07) 0px 2px 4px,
+       rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+        rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+        background-color: white !important;
+}

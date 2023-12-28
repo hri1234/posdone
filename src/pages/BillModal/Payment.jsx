@@ -1,0 +1,206 @@
+import React from 'react'
+import {useState} from "react"
+import './Payment.css'
+import pic1 from '../../Assets/PNG/Asset 9@4x.png'
+import { Link } from 'react-router-dom'
+import { useSelector } from "react-redux";
+import { v4 as uuid } from "uuid";
+import { productPriceFormatter } from "src/utils";
+// import { useDispatch, useSelector } from "react-redux";
+import BillModal1 from "src/Components/modals/billmodal/BillModal1";
+import { CustomBackdrop } from "src/Components";
+
+const Payment = () => {
+    const cartItemsRedux = useSelector(({ cart }) => cart?.items);
+    const cartTotalPriceRedux = useSelector(({ cart }) => cart?.totalPrice);
+    const menuRedux = useSelector(({ menu }) => menu?.items);
+    const Hritik = cartTotalPriceRedux 
+    const [billModal1, setBillModal1] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+    const closeBillModal = () => {
+        setBillModal1(false);
+        // setProductSelected({});
+      };
+
+    const onHandelChanges =()=>{
+        alert("Your payment is successful")
+    }
+
+    const totalAmount = Number(cartTotalPriceRedux);
+
+  const tax = (totalAmount / 1.12) * 0.12;
+  const subtotal = totalAmount - tax;
+  const hashId = `${uuid()}`.replace(/\-/g, "").replace(/\D+/g, "");
+  const order_id = "#" + hashId.substring(0, 5);
+  // console.log("allProducts", allProducts);
+  console.log("menuRedux", menuRedux);
+//   console.log("selectedDish", selectedDish);
+  // console.log("cartItemsRedux", cartItemsRedux);
+  const printPage = () => {
+    window.print();
+ };
+
+  return (
+    <>
+    <>
+  {/* nav-start */}
+  <nav>
+    <div className="start" loading={loading}>
+      <a href="">
+        <i
+          className="fa fa-chevron-left"
+          style={{
+            color: "#0D536D",
+            fontSize: 17,
+            boxSizing: "content-box",
+            lineHeight: 2,
+            textAlign: "center",
+            width: 30,
+            height: 30,
+            display: "inline-block",
+            overflow: "hidden",
+            borderRadius: "50%",
+            backgroundColor: "#79A3B1"
+          }}
+        />
+      </a>
+    </div>
+    <div className="middle">
+      <span className="fs-5" style={{ fontWeight: 600 }}>
+        Split Custom Amount
+      </span>
+    </div>
+    <div className="end">
+      <a className="nav-link" href="#">
+        <i
+          className="fa fa-repeat"
+          style={{
+            color: "#0D536D",
+            fontSize: 17,
+            boxSizing: "content-box",
+            lineHeight: 2,
+            textAlign: "center",
+            width: 30,
+            height: 30,
+            display: "inline-block",
+            overflow: "hidden",
+            borderRadius: "50%",
+            backgroundColor: "#79A3B1"
+          }}
+        />
+      </a>
+    </div>
+  </nav>
+  {/* nav-end */}
+  <div className="container-fluid ">
+    <div className="row">
+      <div className="col-md-3" />
+      <div className="col-md-3" />
+      <div className="col-md-3" />
+      <div className="col-md-3 p-0 ">
+        <ul className="list-group border-top-0">
+          <li
+            href="#"
+            className="list-group-item list-group-item-action d-flex gap-3 py-2"
+            aria-current="true"
+          >
+            <i
+              className="fa-regular fa-user mt-2"
+              style={{
+                color: "white",
+                fontSize: 16,
+                boxSizing: "content-box",
+                lineHeight: 2,
+                textAlign: "center",
+                width: 30,
+                height: 30,
+                display: "inline-block",
+                overflow: "hidden",
+                borderRadius: "50%",
+                backgroundColor: "#0D536D"
+              }}
+            />
+            <div>
+              <h6 className="mb-0 set_icon1" style={{ fontWeight: 600 }}>
+                Sam Curran{" "}
+              </h6>
+              <p className="mb-0 opacity-75 set_icon1">0725854423</p>
+            </div>
+            <div>
+              <p className="mb-0 opacity-75 set_icon1 ms-5">
+                <span>
+                  <i className="fa-regular fa-clock" />
+                </span>
+                <span style={{ fontSize: 12 }}> 6Visit Times</span>
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div className="row row-cols-1 row-cols-md-3 mb-3 text-center">
+  <div className="col-md-4 offset-md-4 py-4  px-5">
+    <div className="card mb-4 px-3 py-1 rounded-4 shadow border-0">
+      <div className="card-body" style={{ width: "100%", height: "100%" }}>
+        <div className="mt-3  mb-4 set_img mx-auto">
+          <img
+            src={pic1}
+            className="img-fluid"
+            style={{ width: "100%" }}
+            alt=""
+          />
+        </div>
+        <h5 style={{ color: "#0D536D", fontWeight: 600 }}>Payment Complete</h5>
+        <h4 style={{ color: "#0D536D", fontWeight: 600 }}> ${(Hritik)}</h4>
+        <button
+          type="button"
+          className="w-100 btn btn-lg btn-outline mt-3"
+          style={{ borderRadius: 11, backgroundColor: "#3ab54a" }}
+        >
+          <span style={{ fontSize: 18, fontWeight: 600, color: "white"  }} >
+          <Link to="/Customer-Order"  style={{ borderRadius: 11, color:"white" , textDecoration:"none" }}>Done</Link>
+            
+          </span>
+        </button>
+        <button
+          type="button"
+          className="w-100 btn btn-lg btn-outline mt-3"
+          style={{ borderRadius: 11, backgroundColor: "#0D536D" }}
+        >
+          <span style={{ fontSize: 14, fontWeight: 600, color: "white" }}>
+          <Link  style={{ borderRadius: 11, color:"white" , textDecoration:"none" }}  onClick={printPage}>Print Receipt</Link>
+          {/* <button style={{ borderRadius: 11, color:"white" , textDecoration:"none" }}>
+          disabled={cartItemsRedux?.length === 0}
+                     onClick={() => setBillModal1(true)}
+                     </button> */}
+          </span>
+        </button>
+        <button
+          type="button"
+          className="w-100 btn btn-lg btn-outline mt-3"
+          style={{ borderRadius: 11, border: "2px solid #0D536D" }}
+        >
+          <span style={{ fontSize: 14, fontWeight: 600, color: "#0D536D" }}>
+            <i
+              className="fa-light fa-arrow-up-right me-1 fs-5"
+              style={{ color: "#29cc61" }}
+            />{" "}
+            <Link to="/Done"  style={{ borderRadius: 11, color:"black" , textDecoration:"none" }}>More Option</Link>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  </div>
+</>
+
+    
+    </>
+  )
+}
+
+export default Payment

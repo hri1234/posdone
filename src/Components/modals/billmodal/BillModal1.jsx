@@ -16,7 +16,7 @@ import {
 } from "react-thermal-printer";
 import { productPriceFormatter } from "src/utils";
 
-const BillModal = ({
+const BillModal1 = ({
   modalShow,
   onCloseModal,
   cartProducts,
@@ -34,7 +34,7 @@ const BillModal = ({
     onCloseModal(false);
   };
 
-  const rTitle = "Restro Food";
+  const rTitle = "Loenex";
   const rAddress = "RQQ4+MP7, Hagonoy Bulacan";
   const rContact = "(+63 960 841 0594)";
   const rDateTime = new Date().toLocaleString();
@@ -182,4 +182,4 @@ const BillModal = ({
   );
 };
 
-export default BillModal;
+export default BillModal1;

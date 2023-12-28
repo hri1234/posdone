@@ -436,7 +436,7 @@ const CustomerOrder = () => {
                     <i className="fa fa-bell d-block fs-18px my-1" /> Service
                   </a> */}
                   <a
-                    onClick={() => setBillModal(true)}
+                    // onClick={() => setBillModal(true)}
                     href="#"
                     className="btn btn-default    rounded-3 text-center me-10px w-70px"
                   >

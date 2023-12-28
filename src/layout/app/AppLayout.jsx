@@ -12,8 +12,8 @@ import DashboardSidebar from "./DashboardSidebar";
 
 // ----------------------------------------------------------------------
 
-const APP_BAR_MOBILE = 60;
-const APP_BAR_DESKTOP = 50;
+// const APP_BAR_MOBILE = 60;
+// const APP_BAR_DESKTOP = 50;
 
 const RootStyle = styled("div")({
   display: "flex",
@@ -26,12 +26,12 @@ const MainStyle = styled("div")(({ theme }) => ({
   flexGrow: 1,
   overflow: "auto",
   minHeight: "100%",
-  paddingTop: APP_BAR_MOBILE + 24,
+  // paddingTop: APP_BAR_MOBILE + 24,
   // paddingBottom: theme.spacing(10),
   [theme.breakpoints.up("lg")]: {
-    paddingTop: APP_BAR_DESKTOP + 20,
+    // paddingTop: APP_BAR_DESKTOP + 20,
     paddingLeft: theme.spacing(8),
-    paddingRight: theme.spacing(2),
+    paddingRight: theme.spacing(4),
   },
 }));
 
@@ -39,14 +39,14 @@ function AppLayout() {
   const [open, setOpen] = useState(false);
   return (
     <RootStyle>
-      <DashboardNavbar
+      {/* <DashboardNavbar
         isOpenSidebar={open}
         toggleSidebar={() => setOpen(!open)}
-      />
-      <DashboardSidebar
+      /> */}
+      {/* <DashboardSidebar
         isOpenSidebar={open}
         toggleSidebar={() => setOpen(!open)}
-      />
+      /> */}
       <MainStyle>
         <Outlet />
       </MainStyle>

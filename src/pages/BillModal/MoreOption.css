@@ -1,0 +1,65 @@
+body {
+    background-color: #f5f6f8;
+  }
+  .set_icon1{
+       color: #0D536D;
+   }
+  .set_bg{
+    color: #0D536D;
+   }
+   .set_card{
+   border-radius: 26px;
+   box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+   }
+   nav {
+ background-color: #0D536D;
+ color: white;
+ padding: 10px;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ height: 60px !important;
+ }
+.start, .middle, .end {
+ padding: 10px;
+ }
+ .set_img{
+   height: 34px;
+   width: 35px;
+   display: flex;
+   align-items: center;
+   justify-content: center; 
+
+
+ }
+ .set_img_bg{
+   height: 74px;
+   width: 74px;
+   object-fit: cover;
+   object-position: center;
+   background-color: white;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;   
+ }
+ .set_img_bg1{
+   height: 74px;
+   width: 74px;
+   object-fit: cover;
+   object-position: center;
+   background-color: #f5f6f8;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;   
+ }
+
+.set_images{
+height: 100%;
+width: 100%; 
+display: flex;
+align-items: center;
+justify-content: center; 
+
+}

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // css
 import "./customerOrder.scss";
 // npm
@@ -8,7 +9,7 @@ import toastr from "toastr";
 import { v4 as uuid } from "uuid";
 // Components
 import { ProductModal, ProductRemoveModal } from "src/Components/modals";
-import BillModal from "src/Components/modals/billmodal/BillModal";
+// import BillModal1 from "src/Components/modals/billmodal/BillModal1";
 import { CustomBackdrop } from "src/Components";
 // constants
 import {
@@ -29,9 +30,38 @@ import {
 import { getMethod, productPriceFormatter } from "src/utils";
 import { actionMenu } from "src/store/slices/menu.slice";
 import { Box } from "@mui/material";
+import AddCustomer from "../addcustomer/AddCustomer"
+import { Link } from 'react-router-dom';
+// import * as React from 'react';
+// import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import CustomizedSteppers from "../Stepper/CustomizedSteppers"
+import DashboardNavbar from "../../layout/app/DashboardNavbar"
+import DashboardSidebar from "../../layout/app/DashboardSidebar"
+// import Payment from "../BillModal/Payment"
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: "70%",
+  height:"600px",
+  bgcolor: 'background.paper',
+  // border: '2px solid #000',
+  boxShadow: "0 12px 19px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+  p: 4,
+};
+
 // import { PRODUCTS } from "src/constants/products.constant";
 
 const CustomerOrder = () => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cartItemsRedux = useSelector(({ cart }) => cart?.items);
@@ -45,11 +75,27 @@ const CustomerOrder = () => {
 
   const [productSelected, setProductSelected] = useState({});
   const [productModal, setProductModal] = useState(false);
-  const [billModal, setBillModal] = useState(false);
+  // const [billModal, setBillModal] = useState(false);
   const [productRemoveModal, setProductRemoveModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [selectedValue , setSelectedValue] = useState("addmore")
+  // const [customer , setCustomer] = useState([])
+
+  const HandelDoneChanges = (event) =>{
+    setSelectedValue(event.target.value);
+  };
 
   //  const [billTime, setBillTime] = useStat("");
+
+  // const FetchFunction = async()=>{
+  //   const response = await fetch("https://pos-api-3v8o.onrender.com/api/customer/")
+  //   const newVal = await response.json()
+  //   console.log(newVal)
+  //   setCustomer(newVal)
+  // }
+  // useEffect(()=>{
+  //   FetchFunction()
+  // },[])
 
   console.log("cartItemsRedux", cartItemsRedux);
   const fetchMenu = async () => {
@@ -128,10 +174,10 @@ const CustomerOrder = () => {
     setProductSelected({});
   };
 
-  const closeBillModal = () => {
-    setBillModal(false);
-    // setProductSelected({});
-  };
+  // const closeBillModal = () => {
+  //   setBillModal(false);
+  //   // setProductSelected({});
+  // };
   const handleAddCartData = (data) => {
     console.log("handleAddCartData", data);
     // let totalPrice = data?.price;
@@ -172,7 +218,7 @@ const CustomerOrder = () => {
 
   const handleSaveCart = () => {
     dispatch(saveCart(cartItemsRedux));
-    navigate(ROUTES_URL.KITCHEN_ORDER);
+    navigate(ROUTES_URL.KITCHENDINNING);
   };
 
   const totalAmount = Number(cartTotalPriceRedux);
@@ -186,9 +232,20 @@ const CustomerOrder = () => {
   console.log("selectedDish", selectedDish);
   // console.log("cartItemsRedux", cartItemsRedux);
 
+
+
   return (
     <CustomBackdrop loading={loading}>
-      <div className="customerOrderPage row">
+
+       <DashboardNavbar
+        isOpenSidebar={open}
+        toggleSidebar={() => setOpen(!open)}
+      />
+       <DashboardSidebar
+        isOpenSidebar={open}
+        toggleSidebar={() => setOpen(!open)}
+      />
+      <div className="customerOrderPage row" style={{marginTop:"80px"}}>
         <div className="col-md-11 col-lg-9 col-sm-10 mt-2 col-10">
           {/* top 6 card section start */}
           <hr
@@ -203,7 +260,32 @@ const CustomerOrder = () => {
             <div className="col-6 col-md-3 col-lg-2 col-sm-4 pb-1">
               <div className="card  Card_inner">
                 <div className="card-body  gap-2 akash">
-                  <div className="d-flex justify-content-evenly mt-3">
+                  
+                <div>
+      <Button onClick={handleOpen} style={{textAlign:"center" , fontSize:"12px" , fontWeight:"200" , color:"black" , height:"50px" , paddingLeft:"50px" , }}><span className="mt-1" style={{paddingLeft:"-20px"}}>
+                      <i className="fa-duotone fa-user-plus" style={{paddingLeft:"-20px"}}/>
+                    </span>Open modal</Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          {/* <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography> */}
+          <Typography> 
+          <CustomizedSteppers />
+          <h1>hello</h1>
+           </Typography>
+        </Box>
+      </Modal>
+    </div>
+                  {/* <div className="d-flex justify-content-evenly mt-3" >
                     <span className="mt-1">
                       <i className="fa-duotone fa-user-plus" />
                     </span>
@@ -211,19 +293,24 @@ const CustomerOrder = () => {
                       <p
                         className="card-text mb-1 "
                         style={{ fontSize: "0.6rem" }}
+                        
                       >
-                        {" "}
-                        Add Customer
+                        
+                        <p className="card-text mb-1" style={{ fontSize: "0.6rem" }}>
+            <Link to="/CustomizedSteppers" style={{color:"black" , textDecoration:"none"}}>Add Customer</Link>
+        </p>
                       </p>
                       <h6
                         className="card-subtitle mb-2"
                         style={{ fontSize: "0.6rem" }}
                       >
-                        {" "}
-                        Mike Orian
+                        Mile Orean
+                        
+                       
                       </h6>
                     </div>
-                  </div>
+                  </div> */}
+                        
                 </div>
               </div>
             </div>
@@ -337,14 +424,29 @@ const CustomerOrder = () => {
                       <i className="fa-duotone fa-cowbell-circle-plus " />
                     </span>
                     <div className>
-                      <div className="dropdown">
+                      <div className="">
                         <p
                           className="card-text mb-1 dropdown-toggle"
                           data-bs-toggle="dropdown"
                           aria-expanded="false"
                           style={{ fontSize: "0.7rem" }}
                         >
-                          Add more
+                            <select value={selectedValue} onChange={HandelDoneChanges} style={{border:"none"}}>
+        <option value="addmore" style={{textAlign:"left"}}>Add More</option>
+        <option value="transfertable" style={{textAlign:"left"}}>Transfer Table</option>
+        <option value="option3"style={{textAlign:"left"}}>Location Transfers</option>
+        <option value="option3" style={{textAlign:"left"}}>New Order</option>
+        <option value="option3" style={{textAlign:"left"}}>Order History</option>
+        <option value="option3" style={{textAlign:"left"}}>Return Item</option>
+        <option value="option3" style={{textAlign:"left"}}>Exchange Items</option>
+        <option value="option3" style={{textAlign:"left"}}>Saved Order</option>
+        <option value="option3" style={{textAlign:"left"}}>Add Note</option>
+
+
+
+
+
+      </select>
                         </p>
                         <ul
                           className="dropdown-menu  Add_more_menu "
@@ -612,6 +714,7 @@ const CustomerOrder = () => {
               <div className="d-flex  justify-content-between ">
                 <div>
                   <h6 className="mt-2" style={{ color: "white" }}>
+                  <i class="fa-solid fa-bars"></i>
                     Order {order_id}
                   </h6>
                 </div>
@@ -850,10 +953,10 @@ const CustomerOrder = () => {
                       color: "white",
                       width: "120px",
                     }}
-                    disabled={cartItemsRedux?.length === 0}
-                    onClick={() => setBillModal(true)}
+                    disabled={cartItemsRedux?.length === 0 }
+                    // onClick={() => setBillModal(true)}
                   >
-                    Pay
+                   <Link to="/BillModal" style={{color:"black" , textDecoration:"none"}}>Pay</Link>
                   </button>
                 </div>
               </div>
@@ -875,7 +978,7 @@ const CustomerOrder = () => {
         data={productSelected}
       />
 
-      {billModal ? (
+      {/* {billModal ? (
         <BillModal
           modalShow={billModal}
           onCloseModal={() => closeBillModal()}
@@ -885,7 +988,7 @@ const CustomerOrder = () => {
           subtotal={subtotal}
           tax={tax}
         />
-      ) : null}
+      ) : null} */}
     </CustomBackdrop>
   );
 };

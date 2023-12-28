@@ -117,7 +117,7 @@ const Sidebar = (props) => {
       icon: "fa-solid fa-utensils fs-6",
     },
     {
-      path: ROUTES_URL.HOME,
+      path: ROUTES_URL.COUNTER_CHECKOUT,
       name: "Checkout",
       icon: "fa-duotone fa-credit-card fs-6",
     },
