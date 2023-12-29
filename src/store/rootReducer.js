@@ -7,6 +7,7 @@ import products from "./slices/product.slice";
 import customer from "./slices/customer.slice";
 import addsupplier from "./slices/addsupplier.slice";
 import category from "./slices/category.slice";
+import invoice from "./slices/invoice.slice";
 
 const rootReducer = combineReducers({
   cart,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   addsupplier,
   printing,
   category,
+  invoice,
 });
 
 export default rootReducer;

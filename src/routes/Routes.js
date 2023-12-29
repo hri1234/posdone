@@ -13,6 +13,8 @@ import KitchenOrderEX from "src/pages/kitchenOrder/KitchenOrderEX";
 import Inventory from "src/pages/inventory/Inventory";
 import OnlineOrder from "src/pages/onlineOrder/OnlineOrderPage";
 import { OnlineOrderTable } from "src/pages/onlineOrder/OnlineOrderTable";
+import Reward from "src/pages/reward/Reward";
+import Invoice from "src/pages/invoice/Invoice";
 // import BillModal from "src/Components/modals/billmodal/BillModal";
 
 const AddCustomerForm = lazy(() =>
@@ -157,6 +159,26 @@ const RoutesWrap = () => {
             {
               path: "",
               element: <Order />,
+            },
+          ],
+        },
+        {
+          path: ROUTES_URL.REWARD.split(appSplitStr)[1],
+          element: <Outlet />,
+          children: [
+            {
+              path: "",
+              element: <Reward />,
+            },
+          ],
+        },
+        {
+          path: ROUTES_URL.INVOICE.split(appSplitStr)[1],
+          element: <Outlet />,
+          children: [
+            {
+              path: "",
+              element: <Invoice />,
             },
           ],
         },
