@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // css
 import "./customerOrder.scss";
 // npm
@@ -30,28 +30,33 @@ import {
 import { getMethod, productPriceFormatter } from "src/utils";
 import { actionMenu } from "src/store/slices/menu.slice";
 import { Box } from "@mui/material";
-import AddCustomer from "../addcustomer/AddCustomer"
-import { Link } from 'react-router-dom';
+import AddCustomer from "../addcustomer/AddCustomer";
+import { Link } from "react-router-dom";
 // import * as React from 'react';
 // import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import CustomizedSteppers from "../Stepper/CustomizedSteppers"
-import DashboardNavbar from "../../layout/app/DashboardNavbar"
-import DashboardSidebar from "../../layout/app/DashboardSidebar"
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import CustomizedSteppers from "../Stepper/CustomizedSteppers";
+import DashboardNavbar from "../../layout/app/DashboardNavbar";
+import DashboardSidebar from "../../layout/app/DashboardSidebar";
 // import Payment from "../BillModal/Payment"
 
+import styles from "./CustomerOrder.module.css";
+import { toast } from "react-toastify";
+import { addCustomers } from "src/store/slices/customer.slice";
+
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: "70%",
-  height:"600px",
-  bgcolor: 'background.paper',
+  height: "600px",
+  bgcolor: "background.paper",
   // border: '2px solid #000',
-  boxShadow: "0 12px 19px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+  boxShadow:
+    "0 12px 19px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
   p: 4,
 };
 
@@ -78,10 +83,18 @@ const CustomerOrder = () => {
   // const [billModal, setBillModal] = useState(false);
   const [productRemoveModal, setProductRemoveModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [selectedValue , setSelectedValue] = useState("addmore")
+  const [selectedValue, setSelectedValue] = useState("addmore");
+
+  const [activeField, setActiveField] = useState(0);
+
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState();
+
   // const [customer , setCustomer] = useState([])
 
-  const HandelDoneChanges = (event) =>{
+  const HandelDoneChanges = (event) => {
     setSelectedValue(event.target.value);
   };
 
@@ -232,20 +245,31 @@ const CustomerOrder = () => {
   console.log("selectedDish", selectedDish);
   // console.log("cartItemsRedux", cartItemsRedux);
 
+  console.log(activeField);
 
-
+  const handleFormSubmit = () => {
+    const payload = { name, email, address, phone };
+    console.log(payload);
+    dispatch(
+      addCustomers({
+        payload,
+        callback: () => {
+          toast.success("Added customer");
+        },
+      })
+    );
+  };
   return (
     <CustomBackdrop loading={loading}>
-
-       <DashboardNavbar
+      <DashboardNavbar
         isOpenSidebar={open}
         toggleSidebar={() => setOpen(!open)}
       />
-       <DashboardSidebar
+      <DashboardSidebar
         isOpenSidebar={open}
         toggleSidebar={() => setOpen(!open)}
       />
-      <div className="customerOrderPage row" style={{marginTop:"80px"}}>
+      <div className="customerOrderPage row" style={{ marginTop: "80px" }}>
         <div className="col-md-11 col-lg-9 col-sm-10 mt-2 col-10">
           {/* top 6 card section start */}
           <hr
@@ -260,31 +284,118 @@ const CustomerOrder = () => {
             <div className="col-6 col-md-3 col-lg-2 col-sm-4 pb-1">
               <div className="card  Card_inner">
                 <div className="card-body  gap-2 akash">
-                  
-                <div>
-      <Button onClick={handleOpen} style={{textAlign:"center" , fontSize:"12px" , fontWeight:"200" , color:"black" , height:"50px" , paddingLeft:"50px" , }}><span className="mt-1" style={{paddingLeft:"-20px"}}>
-                      <i className="fa-duotone fa-user-plus" style={{paddingLeft:"-20px"}}/>
-                    </span>Open modal</Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          {/* <Typography id="modal-modal-title" variant="h6" component="h2">
+                  <div>
+                    <Button
+                      onClick={handleOpen}
+                      style={{
+                        textAlign: "center",
+                        fontSize: "12px",
+                        fontWeight: "200",
+                        color: "black",
+                        height: "50px",
+                        paddingLeft: "50px",
+                      }}
+                    >
+                      <span className="mt-1" style={{ paddingLeft: "-20px" }}>
+                        <i
+                          className="fa-duotone fa-user-plus"
+                          style={{ paddingLeft: "-20px" }}
+                        />
+                      </span>
+                      Open modal
+                    </Button>
+                    <Modal
+                      open={open}
+                      onClose={handleClose}
+                      aria-labelledby="modal-modal-title"
+                      aria-describedby="modal-modal-description"
+                    >
+                      <Box sx={style}>
+                        {/* <Typography id="modal-modal-title" variant="h6" component="h2">
             Text in a modal
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </Typography> */}
-          <Typography> 
-          <CustomizedSteppers />
-          <h1>hello</h1>
-           </Typography>
-        </Box>
-      </Modal>
-    </div>
+                        <Typography>
+                          <CustomizedSteppers setActiveField={setActiveField} />
+                          {activeField === 0 && (
+                            <article className={styles["input-container"]}>
+                              <div className={styles.inputs}>
+                                <label htmlFor="email">Email</label>
+                                <input
+                                  type="email"
+                                  required
+                                  name="email"
+                                  value={email}
+                                  onChange={(e) => {
+                                    setEmail(e.target.value);
+                                  }}
+                                />
+                              </div>
+                              <div className={styles.inputs}>
+                                <label htmlFor="name">Name</label>
+                                <input
+                                  value={name}
+                                  onChange={(e) => {
+                                    setName(e.target.value);
+                                  }}
+                                  type="text"
+                                  required
+                                  name="name"
+                                />
+                              </div>
+                            </article>
+                          )}
+                          {activeField === 1 && (
+                            <article className={styles["input-container"]}>
+                              <div className={styles.inputs}>
+                                <label htmlFor="phone">Phone</label>
+                                <input
+                                  type="number"
+                                  required
+                                  value={phone}
+                                  onChange={(e) => {
+                                    setPhone(e.target.value);
+                                  }}
+                                  name="phone"
+                                />
+                              </div>
+                              <div className={styles.inputs}>
+                                <label htmlFor="address">Address</label>
+                                <input
+                                  type="text"
+                                  value={address}
+                                  onChange={(e) => {
+                                    setAddress(e.target.value);
+                                  }}
+                                  required
+                                  name="address"
+                                />
+                              </div>
+                            </article>
+                          )}
+                          {activeField === 2 && (
+                            <article className={styles["input-container"]}>
+                              <button
+                                className={styles.button}
+                                disabled={
+                                  name.length === 0 ||
+                                  email.length === 0 ||
+                                  address.length === 0
+                                }
+                                onClick={() => {
+                                  handleFormSubmit();
+                                }}
+                              >
+                                Create Customer
+                              </button>
+                            </article>
+                          )}
+                        </Typography>
+                      </Box>
+                    </Modal>
+                  </div>
                   {/* <div className="d-flex justify-content-evenly mt-3" >
                     <span className="mt-1">
                       <i className="fa-duotone fa-user-plus" />
@@ -310,7 +421,6 @@ const CustomerOrder = () => {
                       </h6>
                     </div>
                   </div> */}
-                        
                 </div>
               </div>
             </div>
@@ -431,22 +541,66 @@ const CustomerOrder = () => {
                           aria-expanded="false"
                           style={{ fontSize: "0.7rem" }}
                         >
-                            <select value={selectedValue} onChange={HandelDoneChanges} style={{border:"none"}}>
-        <option value="addmore" style={{textAlign:"left"}}>Add More</option>
-        <option value="transfertable" style={{textAlign:"left"}}>Transfer Table</option>
-        <option value="option3"style={{textAlign:"left"}}>Location Transfers</option>
-        <option value="option3" style={{textAlign:"left"}}>New Order</option>
-        <option value="option3" style={{textAlign:"left"}}>Order History</option>
-        <option value="option3" style={{textAlign:"left"}}>Return Item</option>
-        <option value="option3" style={{textAlign:"left"}}>Exchange Items</option>
-        <option value="option3" style={{textAlign:"left"}}>Saved Order</option>
-        <option value="option3" style={{textAlign:"left"}}>Add Note</option>
-
-
-
-
-
-      </select>
+                          <select
+                            value={selectedValue}
+                            onChange={HandelDoneChanges}
+                            style={{ border: "none" }}
+                          >
+                            <option
+                              value="addmore"
+                              style={{ textAlign: "left" }}
+                            >
+                              Add More
+                            </option>
+                            <option
+                              value="transfertable"
+                              style={{ textAlign: "left" }}
+                            >
+                              Transfer Table
+                            </option>
+                            <option
+                              value="option3"
+                              style={{ textAlign: "left" }}
+                            >
+                              Location Transfers
+                            </option>
+                            <option
+                              value="option3"
+                              style={{ textAlign: "left" }}
+                            >
+                              New Order
+                            </option>
+                            <option
+                              value="option3"
+                              style={{ textAlign: "left" }}
+                            >
+                              Order History
+                            </option>
+                            <option
+                              value="option3"
+                              style={{ textAlign: "left" }}
+                            >
+                              Return Item
+                            </option>
+                            <option
+                              value="option3"
+                              style={{ textAlign: "left" }}
+                            >
+                              Exchange Items
+                            </option>
+                            <option
+                              value="option3"
+                              style={{ textAlign: "left" }}
+                            >
+                              Saved Order
+                            </option>
+                            <option
+                              value="option3"
+                              style={{ textAlign: "left" }}
+                            >
+                              Add Note
+                            </option>
+                          </select>
                         </p>
                         <ul
                           className="dropdown-menu  Add_more_menu "
@@ -714,7 +868,7 @@ const CustomerOrder = () => {
               <div className="d-flex  justify-content-between ">
                 <div>
                   <h6 className="mt-2" style={{ color: "white" }}>
-                  <i class="fa-solid fa-bars"></i>
+                    <i class="fa-solid fa-bars"></i>
                     Order {order_id}
                   </h6>
                 </div>
@@ -953,10 +1107,15 @@ const CustomerOrder = () => {
                       color: "white",
                       width: "120px",
                     }}
-                    disabled={cartItemsRedux?.length === 0 }
+                    disabled={cartItemsRedux?.length === 0}
                     // onClick={() => setBillModal(true)}
                   >
-                   <Link to="/BillModal" style={{color:"black" , textDecoration:"none"}}>Pay</Link>
+                    <Link
+                      to="/BillModal"
+                      style={{ color: "black", textDecoration: "none" }}
+                    >
+                      Pay
+                    </Link>
                   </button>
                 </div>
               </div>

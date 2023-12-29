@@ -3,14 +3,16 @@ import React, { lazy, memo } from "react";
 import { Navigate, useRoutes, Outlet } from "react-router-dom";
 // constants
 import { ROUTES_URL } from "src/constants/url.constant";
-import OnlineOrder from "src/pages/customerOrder/OnlineOrder";
+// import OnlineOrder from "src/pages/customerOrder/OnlineOrder";
 
 import PurchaseOrder from "src/pages/purchase/PurchaseOrder";
 import SalesOrder from "src/pages/purchase/SalesOrder";
 import PurchaseSuplire from "src/pages/purchase/PurchaseSuplire";
 import ProductsForm from "src/pages/products/ProductsForm";
 import KitchenOrderEX from "src/pages/kitchenOrder/KitchenOrderEX";
-import Inventory from "src/pages/inventory/Inventory"
+import Inventory from "src/pages/inventory/Inventory";
+import OnlineOrder from "src/pages/onlineOrder/OnlineOrderPage";
+import { OnlineOrderTable } from "src/pages/onlineOrder/OnlineOrderTable";
 // import BillModal from "src/Components/modals/billmodal/BillModal";
 
 const AddCustomerForm = lazy(() =>
@@ -40,7 +42,7 @@ const KitchenOrder = lazy(() => import("src/pages/kitchenOrder/KitchenOrder"));
 const PrintingForm = lazy(() => import("src/pages/printing/PrintingForm"));
 const MenuStock = lazy(() => import("src/pages/menuStock/MenuStock"));
 const MenuForm = lazy(() => import("src/pages/menuStock/MenuForm"));
-const BillModal = lazy(() => import("src/pages/BillModal/BillModal") )
+const BillModal = lazy(() => import("src/pages/BillModal/BillModal"));
 const TableBooking = lazy(() => import("src/pages/tableBooking/TableBooking"));
 const Products = lazy(() => import("src/pages/products/Products"));
 // const ProductsForm = lazy(() => import("src/pages/products/ProductsForm"));
@@ -53,16 +55,20 @@ const Charge = lazy(() => import("src/pages/BillModal/Charge"));
 const Payment = lazy(() => import("src/pages/BillModal/Payment"));
 const SplitCustom = lazy(() => import("src/pages/BillModal/SplitCustom"));
 const Done = lazy(() => import("src/pages/BillModal/Done"));
-const Openregister = lazy(()=> import("src/pages/Managment/Openregister"))
-const CustomizedSteppers = lazy(() => import("src/pages/Stepper/CustomizedSteppers"))
-const Calculater = lazy(() => import("src/pages/BillModal/Calculater"))
-const Dinning = lazy(()=> import("src/pages/diningmanagement/Dinning"))
-const KitchenDinning = lazy(() => import("src/pages/diningmanagement/KitchenDinning"));
-const Dinnside = lazy(()=> import("src/pages/diningmanagement/Dinnside"))
-const Table = lazy(()=> import("src/pages/diningmanagement/Table"))
+const Openregister = lazy(() => import("src/pages/Managment/Openregister"));
+const CustomizedSteppers = lazy(() =>
+  import("src/pages/Stepper/CustomizedSteppers")
+);
+const Calculater = lazy(() => import("src/pages/BillModal/Calculater"));
+const Dinning = lazy(() => import("src/pages/diningmanagement/Dinning"));
+const KitchenDinning = lazy(() =>
+  import("src/pages/diningmanagement/KitchenDinning")
+);
+const Dinnside = lazy(() => import("src/pages/diningmanagement/Dinnside"));
+const Table = lazy(() => import("src/pages/diningmanagement/Table"));
 const Bells = lazy(() => import("src/pages/diningmanagement/Bells"));
 const Customer = lazy(() => import("src/pages/customer/Customer"));
-const Order = lazy(()=> import("src/pages/order/Order"))
+const Order = lazy(() => import("src/pages/order/Order"));
 
 // const BillModal1 = lazy(() =>{"src/modals/billModal/BillModal1"})
 // const MainPage = lazy(() => import("src/pages/mainPage/MainPage"));
@@ -154,7 +160,6 @@ const RoutesWrap = () => {
             },
           ],
         },
-
 
         {
           path: ROUTES_URL.INVENTORY.split(appSplitStr)[1],
@@ -310,7 +315,6 @@ const RoutesWrap = () => {
           ],
         },
 
-
         // {
         //   path: ROUTES_URL.COUNTER_CHECKOUT.split(appSplitStr)[1],
         //   element: <Outlet />,
@@ -333,7 +337,6 @@ const RoutesWrap = () => {
           ],
         },
 
-        
         {
           path: ROUTES_URL.STEPPER.split(appSplitStr)[1],
           element: <Outlet />,
@@ -462,7 +465,7 @@ const RoutesWrap = () => {
           children: [
             {
               path: "",
-              element: <OnlineOrder />,
+              element: <OnlineOrderTable />,
             },
           ],
         },
