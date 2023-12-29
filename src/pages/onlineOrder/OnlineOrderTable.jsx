@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./OnlineOrderTable.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { getTable } from "src/store/slices/table.slice";
@@ -12,6 +12,10 @@ import {
   TableContainer,
   TextField,
 } from "@mui/material";
+
+import { RxCross2 } from "react-icons/rx";
+
+import { IoMdArrowDropdown } from "react-icons/io";
 import { Table } from "@mui/material";
 import { TableHead } from "@mui/material";
 import { TableRow } from "@mui/material";
@@ -23,12 +27,42 @@ export const OnlineOrderTable = () => {
   const { items, error } = useSelector((state) => state.table);
   const dispatch = useDispatch();
   const [view, setView] = useState(null);
+  const [itemList, setItemList] = useState([]);
+  const [itemSubmitted, setItemSubmitted] = useState(false);
+
+  const buttonStyle = {
+    color: "green",
+  };
+  const itemName = useRef("");
+  const itemQty = useRef("");
+  const itemPrice = useRef("");
   useEffect(() => {
     dispatch(getTable());
   }, [dispatch]);
   console.log(items);
   const openProductHandler = (_id) => {
     setView(_id);
+  };
+  const handleRemoveItem = (index) => {
+    setItemList((item) => {
+      const filtered = item.filter((_, i) => i !== index);
+      return filtered;
+    });
+  };
+  const handleAddItem = () => {
+    setItemSubmitted(false);
+  };
+
+  const handleSubmitItems = () => {
+    if (itemName.current.value.trim()) {
+      const newItem = {
+        name: itemName.current.value,
+        quantity: itemQty.current.value,
+        price: itemPrice.current.value,
+      };
+      setItemSubmitted(true);
+      setItemList([...itemList, newItem]);
+    }
   };
   return (
     <>
@@ -352,110 +386,115 @@ export const OnlineOrderTable = () => {
                     />
                   </div>
                   {/* <Accordion style={{ marginTop: "3rem" }}>
-                <AccordionSummary
-                  expandIcon={<IoMdArrowDropdown />}
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
-                  <h1 className="text-lg font-semibold">Create Items List</h1>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <div className="mt-1">
-                    <div className="flex justify-start  flex-wrap gap-5 align-items-baseline mt-1">
-                      <table className="table table-sm">
-                        <thead>
-                          <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Price</th>
-                          </tr>
-                        </thead>
-                        {itemList.length !== 0 &&
-                          itemList.map((el, i) => (
-                            <tbody key={i}>
+                    <AccordionSummary
+                      expandIcon={<IoMdArrowDropdown />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                    >
+                      <h1 className="text-lg font-semibold">
+                        Create Items List
+                      </h1>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <div className="mt-1">
+                        <div className="flex justify-start  flex-wrap gap-5 align-items-baseline mt-1">
+                          <table className="table table-sm">
+                            <thead>
                               <tr>
-                                <td>{el.name}</td>
-                                <td>{el.quantity}</td>
-                                <td>Rs. {el.price}</td>
-                                <td>
-                                  <div>
-                                    <IoTrash
-                                      className="bg-red-500 p-1 text-white text-3xl cursor-pointer rounded-full hover:bg-red-700 shadow-md"
-                                      onClick={handleRemoveItem.bind(null, i)}
-                                    />
-                                  </div>
-                                </td>
+                                <th scope="col">Name</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Price</th>
                               </tr>
-                            </tbody>
-                          ))}
-                      </table>
-                    </div>
+                            </thead>
+                            {itemList.length !== 0 &&
+                              itemList.map((el, i) => (
+                                <tbody key={i}>
+                                  <tr>
+                                    <td>{el.name}</td>
+                                    <td>{el.quantity}</td>
+                                    <td>Rs. {el.price}</td>
+                                    <td>
+                                      <div>
+                                        <IoTrash
+                                          className="bg-red-500 p-1 text-white text-3xl cursor-pointer rounded-full hover:bg-red-700 shadow-md"
+                                          onClick={handleRemoveItem.bind(
+                                            null,
+                                            i
+                                          )}
+                                        />
+                                      </div>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              ))}
+                          </table>
+                        </div>
 
-                    {!itemSubmitted && (
-                      <div className="flex justify-start flex-wrap gap-3">
-                        <div>
-                          <TextField
-                            id="standard-basic"
-                            label="Items Name"
-                            variant="standard"
-                            className="w-100"
-                            style={buttonStyle}
-                            // value={item.name}
-                            inputRef={itemName}
-                          />
-                        </div>
-                        <div>
-                          <TextField
-                            id="standard-basic"
-                            label="Item Quantity"
-                            variant="standard"
-                            className="w-56"
-                            type="number"
-                            style={buttonStyle}
-                            // value={item.quantity}
-                            inputRef={itemQty}
-                          />
-                        </div>
-                        <div>
-                          <TextField
-                            id="standard-basic"
-                            label="Item Price"
-                            variant="standard"
-                            className="w-56"
-                            type="number"
-                            style={buttonStyle}
-                            // value={item.price}
-                            inputRef={itemPrice}
-                          />
-                        </div>
-                        <div className="flex gap-4 justify-end mt-2">
-                          <FaPlus
-                            className="bg-green-500 p-1 text-white text-3xl cursor-pointer rounded-full hover:bg-green-700 shadow-md"
-                            onClick={handleSubmitItems}
-                          />
-                          <RxCross2
-                            className="bg-red-500 p-1 text-white text-3xl cursor-pointer rounded-full hover:bg-red-700 shadow-md"
-                            onClick={() => setItemSubmitted(true)}
-                          />
-                        </div>
+                        {!itemSubmitted && (
+                          <div className="flex justify-start flex-wrap gap-3">
+                            <div>
+                              <TextField
+                                id="standard-basic"
+                                label="Items Name"
+                                variant="standard"
+                                className="w-100"
+                                style={buttonStyle}
+                                // value={item.name}
+                                inputRef={itemName}
+                              />
+                            </div>
+                            <div>
+                              <TextField
+                                id="standard-basic"
+                                label="Item Quantity"
+                                variant="standard"
+                                className="w-56"
+                                type="number"
+                                style={buttonStyle}
+                                // value={item.quantity}
+                                inputRef={itemQty}
+                              />
+                            </div>
+                            <div>
+                              <TextField
+                                id="standard-basic"
+                                label="Item Price"
+                                variant="standard"
+                                className="w-56"
+                                type="number"
+                                style={buttonStyle}
+                                // value={item.price}
+                                inputRef={itemPrice}
+                              />
+                            </div>
+                            <div className="flex gap-4 justify-end mt-2">
+                              <FaPlus
+                                className="bg-green-500 p-1 text-white text-3xl cursor-pointer rounded-full hover:bg-green-700 shadow-md"
+                                onClick={handleSubmitItems}
+                              />
+                              <RxCross2
+                                className="bg-red-500 p-1 text-white text-3xl cursor-pointer rounded-full hover:bg-red-700 shadow-md"
+                                onClick={() => setItemSubmitted(true)}
+                              />
+                            </div>
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
 
-                  {itemSubmitted && (
-                    <div className="flex justify-end mt-2">
-                      <Button
-                        variant="contained"
-                        style={{ backgroundColor: "green" }}
-                        onClick={handleAddItem}
-                      >
-                        <FaPlus />
-                        Add More Items
-                      </Button>
-                    </div>
-                  )}
-                </AccordionDetails>
-              </Accordion> */}
+                      {itemSubmitted && (
+                        <div className="flex justify-end mt-2">
+                          <Button
+                            variant="contained"
+                            style={{ backgroundColor: "green" }}
+                            onClick={handleAddItem}
+                          >
+                            <FaPlus />
+                            Add More Items
+                          </Button>
+                        </div>
+                      )}
+                    </AccordionDetails>
+                  </Accordion> */}
                   <div>
                     <button
                       className="btn btn_Close me-md-2 mt-3 ms-3 px-4 float-end"
@@ -463,7 +502,7 @@ export const OnlineOrderTable = () => {
                       data-bs-dismiss="modal"
                     >
                       {" "}
-                      Cancle
+                      Cancel
                     </button>
                     <button
                       className="btn btn_save me-md-2 mt-3 px-4 float-end"
